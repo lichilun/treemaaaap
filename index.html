@@ -18,25 +18,22 @@
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    var map = L.map('map').setView([24.9682, 121.1921], 17); // 中央大學
-
+    var map = L.map('map').setView([24.7992, 120.9945], 17);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '地圖資料 &copy; OpenStreetMap 貢獻者'
+      attribution: '© OpenStreetMap'
     }).addTo(map);
-
-    // 多棵樹的監測狀態
     var trees = [
-      { id: 'Tree001', lat: 24.9673, lng: 121.1935, angle: 22.3, status: 'danger' },
-      { id: 'Tree002', lat: 24.9675, lng: 121.1938, angle: 6.7, status: 'normal' },
-      { id: 'Tree003', lat: 24.9670, lng: 121.1940, angle: 12.1, status: 'warning' }
+      { id: 'Tree001', lat: 24.7995, lng: 120.9946, angle: 22.3, status: 'danger' },
+      { id: 'Tree002', lat: 24.7995, lng: 120.9948, angle: 6.7, status: 'normal' },
+      { id: 'Tree003', lat: 24.7993, lng: 120.9947, angle: 12.1, status: 'warning' }
     ];
-
     trees.forEach(function(tree) {
       var statusText = tree.status === 'danger' ? '🔴 危險' :
                        tree.status === 'warning' ? '🟠 注意' : '🟢 正常';
-      var marker = L.marker([tree.lat, tree.lng]).addTo(map);
-      marker.bindPopup(`<b>${tree.id}</b><br>傾斜角：${tree.angle}°<br>狀態：${statusText}`);
+      L.marker([tree.lat, tree.lng]).addTo(map)
+        .bindPopup(`<b>${tree.id}</b><br>傾斜角：${tree.angle}°<br>狀態：${statusText}`);
     });
   </script>
 </body>
 </html>
+
